@@ -8,4 +8,5 @@ part 'foundation/states.dart';
 part 'foundation/typography.dart';
 
 part 'component/atom/text/body_text.dart';
+part 'component/atom/text/sub_title.dart';
 
