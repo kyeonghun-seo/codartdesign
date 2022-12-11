@@ -1,7 +1,11 @@
 library codartdesign;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+import 'package:flutter/material.dart';
+
+part 'foundation/color.dart';
+part 'foundation/layout.dart';
+part 'foundation/states.dart';
+part 'foundation/typography.dart';
+
+part 'component/atom/text/body_text.dart';
+
