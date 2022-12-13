@@ -1,4 +1,4 @@
-part of '../../codartdesign.dart';
+part of '../codartdesign.dart';
 
 const white = Color(0xffFFFFFF);
 const gray100 = Color(0xffFCFCFC);
@@ -90,11 +90,27 @@ extension ColorX on Color {
     }
   }
 
+  Color get hover {
+    if (this == white) {
+      return gray200.withOpacity(0.70);
+    } else {
+      return withOpacity(0.70);
+    }
+  }
+
+  Color get pressed {
+    if (this == white) {
+      return gray200.withOpacity(0.50);
+    } else {
+      return withOpacity(0.50);
+    }
+  }
+
   Color get disabled {
     if (this == white) {
-      return white.withOpacity(0.40);
-    } else {
       return gray900.withOpacity(0.40);
+    } else {
+      return withOpacity(0.40);
     }
   }
 }

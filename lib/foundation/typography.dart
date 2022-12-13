@@ -1,4 +1,4 @@
-part of '../../codartdesign.dart';
+part of '../codartdesign.dart';
 
 /// Headings
 const titleXXL = TextStyle(fontFamily: 'NotoSans', fontSize: 48, fontWeight: FontWeight.w600, letterSpacing: -1.5);
@@ -11,7 +11,9 @@ const titleS = TextStyle(fontFamily: 'NotoSans', fontSize: 16, fontWeight: FontW
 const titleXS = TextStyle(fontFamily: 'NotoSans', fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: -0.15);
 
 /// Body, Button Label
-const textL = TextStyle(fontFamily: 'NotoSans', fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1.5);
+const textL = TextStyle(fontFamily: 'NotoSans', fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1.25);
+const textLWhite =
+    TextStyle(fontFamily: 'NotoSans', fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1.25, color: white);
 
 /// Body, Button Label, Sub Text, Caption, Overline, Badge
 const textM = TextStyle(fontFamily: 'NotoSans', fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5);

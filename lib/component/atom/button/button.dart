@@ -1,50 +1,78 @@
 part of '../../../codartdesign.dart';
 
-class Button extends StatefulWidget {
-  const Button({
-    this.icon,
-    this.text,
-    this.color,
-    this.enable = true,
-    required this.onTap,
-    this.onLongPress,
-    Key? key,
-  }) : super(key: key);
+enum ButtonAction { normal, hover, pressed }
 
-  final String? icon;
-  final String? text;
-  final Color? color;
-  final bool enable;
+enum ButtonSize { small, medium, large, xlarge }
 
-  final GestureTapCallback? onTap;
-  final GestureLongPressCallback? onLongPress;
+mixin Button on State<BoxButton> {
+  ButtonAction action = ButtonAction.normal;
 
-  @override
-  State<Button> createState() => _ButtonState();
-}
-
-class _ButtonState extends ButtonState {
-  @override
-  void initState() {
-    super.initState();
+  void onMouseEnter(detail) {
+    if (action != ButtonAction.hover) {
+      setState(() {
+        action = ButtonAction.hover;
+      });
+    }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return buildGesture(
-      child: AnimatedContainer(
-        duration: normalDuration,
-        curve: easeOutCubic,
-        decoration: BoxDecoration(
-          color: getButtonColor(),
-          borderRadius: BorderRadius.circular(radius200),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: spacing400, vertical: spacing300),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ButtonText(widget.text ?? ''),
-          ],
+  void onMouseExit(detail) {
+    if (action != ButtonAction.normal) {
+      setState(() {
+        action = ButtonAction.normal;
+      });
+    }
+  }
+
+  void onTapDown(detail) {
+    if (action != ButtonAction.pressed) {
+      setState(() {
+        action = ButtonAction.pressed;
+      });
+    }
+  }
+
+  void onTapUp(detail) {
+    if (action != ButtonAction.normal) {
+      setState(() {
+        action = ButtonAction.normal;
+      });
+    }
+  }
+
+  void onTapCancel() {
+    if (action != ButtonAction.normal) {
+      setState(() {
+        action = ButtonAction.normal;
+      });
+    }
+  }
+
+  Widget buildButton({
+    required BoxDecoration boxDecoration,
+  }) {
+    return MouseRegion(
+      onEnter: onMouseEnter,
+      onExit: onMouseExit,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        onTapDown: onTapDown,
+        onTapUp: onTapUp,
+        onTapCancel: onTapCancel,
+        onLongPress: widget.onLongPress,
+        child: AnimatedContainer(
+          duration: normalDuration,
+          curve: easeOutCubic,
+          decoration: BoxDecoration(
+            color: getButtonColor(),
+            borderRadius: BorderRadius.circular(radius300),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: spacing800, vertical: spacing300),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ButtonText(widget.text ?? ''),
+            ],
+          ),
         ),
       ),
     );
@@ -53,7 +81,8 @@ class _ButtonState extends ButtonState {
   Color getButtonColor() {
     final color = widget.color ?? CodartColor().negative.getColor(context);
     if (action == ButtonAction.hover) {
-      return color.highlighted;
+      // return color.hover;
+      return color;
     } else if (action == ButtonAction.pressed) {
       return color.highlighted;
     } else {

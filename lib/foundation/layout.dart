@@ -1,4 +1,4 @@
-part of '../../codartdesign.dart';
+part of '../codartdesign.dart';
 
 const double spacing50 = 2.0;
 const double spacing100 = 4.0;

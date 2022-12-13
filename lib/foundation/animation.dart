@@ -1,4 +1,4 @@
-part of '../../codartdesign.dart';
+part of '../codartdesign.dart';
 
 const normalDuration = Duration(milliseconds: 150);
 const easeOutCubic = Cubic(0.33, 1, 0.68, 1);

@@ -1,1 +1,1 @@
-part of '../../codartdesign.dart';
+part of '../codartdesign.dart';
