@@ -15,8 +15,8 @@ const textL = TextStyle(fontFamily: 'NotoSans', fontSize: 16, fontWeight: FontWe
 
 /// Body, Button Label, Sub Text, Caption, Overline, Badge
 const textM = TextStyle(fontFamily: 'NotoSans', fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: -0.25);
-const textS = TextStyle(fontFamily: 'NotoSans', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25);
-const textXS = TextStyle(fontFamily: 'NotoSans', fontSize: 11, fontWeight: FontWeight.w300, letterSpacing: 0.15);
+const textS = TextStyle(fontFamily: 'NotoSans', fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: -0.15);
+const textXS = TextStyle(fontFamily: 'NotoSans', fontSize: 11, fontWeight: FontWeight.w400, letterSpacing: -0.15);
 
 class CodartTypography {
   CodartTypography._();

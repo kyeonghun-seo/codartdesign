@@ -1,10 +1,14 @@
 library codartdesign;
 
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
+import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 
 part 'component/atom/button/button.dart';
-part 'component/atom/button/box_button.dart';
+part 'component/atom/button/solid_button.dart';
 part 'component/atom/button/button_gesture.dart';
+part 'component/atom/common/gap.dart';
 part 'component/atom/text/body_text.dart';
 part 'component/atom/text/sub_title.dart';
 part 'foundation/animation.dart';

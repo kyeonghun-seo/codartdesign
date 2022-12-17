@@ -1,8 +1,18 @@
 part of '../../../codartdesign.dart';
 
-class SubTitle extends Text {
+class SubTitle extends StatelessWidget {
   const SubTitle(
-    super.data, {
+    this.data, {
     super.key,
-  }) : super(style: titleXS);
+  });
+
+  final String? data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data ?? '',
+      style: titleXS.copyWith(color: CodartColor().text.getColor(context)),
+    );
+  }
 }

@@ -1,8 +1,18 @@
 part of '../../../codartdesign.dart';
 
-class BodyText extends Text {
+class BodyText extends StatelessWidget {
   const BodyText(
-    super.data, {
-    super.key,
-  }) : super(style: textM);
+      this.data, {
+        super.key,
+      });
+
+  final String? data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data ?? '',
+      style: textM.copyWith(color: CodartColor().text.getColor(context)),
+    );
+  }
 }
