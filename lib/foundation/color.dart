@@ -72,10 +72,7 @@ class SemanticColor {
   final Color lightColor;
   final Color darkColor;
 
-  Color getColor(BuildContext context) =>
-      MediaQuery
-          .of(context)
-          .platformBrightness == Brightness.dark ? darkColor : lightColor;
+  Color getColor(BuildContext context) => context.isDarkMode ? darkColor : lightColor;
 }
 
 extension ColorX on Color {

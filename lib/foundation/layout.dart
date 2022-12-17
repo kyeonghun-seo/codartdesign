@@ -32,12 +32,6 @@ class CodartSpacing {
   static final CodartSpacing _instance = CodartSpacing._();
 
   factory CodartSpacing() => _instance;
-
-  final buttonPaddingXs = const EdgeInsets.symmetric(horizontal: grid * 2, vertical: grid);
-  final buttonPaddingS = const EdgeInsets.symmetric(horizontal: spacing8, vertical: spacing4);
-  final buttonPaddingM = const EdgeInsets.symmetric(horizontal: spacing16, vertical: spacing8);
-  final buttonPaddingL = const EdgeInsets.symmetric(horizontal: spacing8, vertical: spacing4);
-  final buttonPaddingXl = const EdgeInsets.symmetric(horizontal: spacing8, vertical: spacing4);
 }
 
 class CodartRadius {
@@ -47,13 +41,13 @@ class CodartRadius {
 
   factory CodartRadius() => _instance;
 
-  Radius base = const Radius.circular(radiusS);
+  Radius base = const Radius.circular(radiusM);
 
   BorderRadius button = const BorderRadius.only(
-    topLeft: Radius.circular(radiusS),
-    topRight: Radius.circular(radiusS),
-    bottomLeft: Radius.circular(radiusS),
-    bottomRight: Radius.circular(radiusS),
+    topLeft: Radius.circular(radiusM),
+    topRight: Radius.circular(radiusM),
+    bottomLeft: Radius.circular(radiusM),
+    bottomRight: Radius.circular(radiusM),
   );
 }
 
