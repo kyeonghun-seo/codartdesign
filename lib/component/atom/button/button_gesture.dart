@@ -36,7 +36,7 @@ mixin ButtonGesture<T extends Button> on State<T> {
     }
   }
 
-  void onTapCancel() {
+  void onTapCancel(detail) {
     if (isPressed) {
       setState(() {
         isPressed = false;
@@ -48,13 +48,16 @@ mixin ButtonGesture<T extends Button> on State<T> {
     return MouseRegion(
       onEnter: onMouseEnter,
       onExit: onMouseExit,
-      child: GestureDetector(
-        onTap: widget.onTap,
-        onTapDown: onTapDown,
-        onTapUp: onTapUp,
-        onTapCancel: onTapCancel,
-        onLongPress: widget.onLongPress,
-        child: child
+      child: Listener(
+        onPointerDown: onTapDown,
+        onPointerUp: onTapUp,
+        onPointerCancel: onTapCancel,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: widget.onTap,
+          onLongPress: widget.onLongPress,
+          child: child
+        ),
       ),
     );
   }

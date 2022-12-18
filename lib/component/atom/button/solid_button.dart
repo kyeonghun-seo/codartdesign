@@ -1,6 +1,6 @@
 part of '../../../codartdesign.dart';
 
-class SolidButton extends Button {
+class SolidButton extends BoxButton {
   const SolidButton({
     required super.onTap,
     super.icon,
@@ -26,7 +26,7 @@ class SolidButton extends Button {
     super.loading,
     super.onLongPress,
     super.key,
-  }) : super(buttonSize: ButtonSize.xs);
+  }) : super(buttonSize: BoxButtonSize.xs);
 
   const SolidButton.small({
     required super.onTap,
@@ -39,7 +39,7 @@ class SolidButton extends Button {
     super.loading,
     super.onLongPress,
     super.key,
-  }) : super(buttonSize: ButtonSize.s);
+  }) : super(buttonSize: BoxButtonSize.s);
 
   const SolidButton.large({
     required super.onTap,
@@ -52,7 +52,7 @@ class SolidButton extends Button {
     super.loading,
     super.onLongPress,
     super.key,
-  }) : super(buttonSize: ButtonSize.l);
+  }) : super(buttonSize: BoxButtonSize.l);
 
   const SolidButton.xLarge({
     required super.onTap,
@@ -65,13 +65,13 @@ class SolidButton extends Button {
     super.loading,
     super.onLongPress,
     super.key,
-  }) : super(buttonSize: ButtonSize.xl);
+  }) : super(buttonSize: BoxButtonSize.xl);
 
   @override
   State<SolidButton> createState() => _SolidButtonState();
 }
 
-class _SolidButtonState extends ButtonState<SolidButton> {
+class _SolidButtonState extends BoxButtonState<SolidButton> {
   @override
   Widget build(BuildContext context) {
     return buildGesture(
@@ -80,7 +80,7 @@ class _SolidButtonState extends ButtonState<SolidButton> {
         curve: easeOutCubic,
         decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: CodartRadius().button,
+          borderRadius: CodartRadius.button,
         ),
         padding: padding,
         child: Row(

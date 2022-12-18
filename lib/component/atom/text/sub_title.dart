@@ -12,7 +12,7 @@ class SubTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       data ?? '',
-      style: titleXS.copyWith(color: CodartColor().text.getColor(context)),
+      style: titleXS.copyWith(color: CodartColor.text.getColor(context)),
     );
   }
 }

@@ -1,5 +1,6 @@
 part of '../codartdesign.dart';
 
+const transparent = Color(0x00000000);
 const white = Color(0xffFFFFFF);
 const gray100 = Color(0xffFCFCFC);
 const gray150 = Color(0xffF5F5F5);
@@ -38,29 +39,26 @@ const navy850 = Color(0xff262F4A);
 const navy900 = Color(0xff202A43);
 
 class CodartColor {
-  CodartColor._();
+  static SemanticColor main = SemanticColor(lightColor: green400, darkColor: green400);
 
-  static final CodartColor _instance = CodartColor._();
+  static SemanticColor background = SemanticColor(lightColor: white, darkColor: gray900);
+  static SemanticColor secondaryBackground = SemanticColor(lightColor: gray100, darkColor: gray870);
+  static SemanticColor tertiaryBackground = SemanticColor(lightColor: gray200, darkColor: gray800);
 
-  factory CodartColor() => _instance;
+  static SemanticColor primaryDimmed = SemanticColor(lightColor: black.withOpacity(0.85), darkColor: black.withOpacity(0.85));
+  static SemanticColor secondaryDimmed = SemanticColor(lightColor: black.withOpacity(0.70), darkColor: black.withOpacity(0.70));
+  static SemanticColor tertiaryDimmed = SemanticColor(lightColor: black.withOpacity(0.30), darkColor: black.withOpacity(0.30));
 
-  SemanticColor main = SemanticColor(lightColor: green400, darkColor: green400);
+  static SemanticColor text = SemanticColor(lightColor: black, darkColor: white);
+  static SemanticColor primaryText = SemanticColor(lightColor: gray900, darkColor: white);
+  static SemanticColor secondaryText = SemanticColor(lightColor: gray600, darkColor: gray500);
+  static SemanticColor tertiaryText = SemanticColor(lightColor: gray350, darkColor: gray750);
 
-  SemanticColor background = SemanticColor(lightColor: white, darkColor: gray900);
-  SemanticColor priamryDimmed = SemanticColor(lightColor: black.withOpacity(0.85), darkColor: black.withOpacity(0.85));
-  SemanticColor secondaryDimmed = SemanticColor(lightColor: black.withOpacity(0.70), darkColor: black.withOpacity(0.70));
-  SemanticColor tertiaryDimmed = SemanticColor(lightColor: black.withOpacity(0.30), darkColor: black.withOpacity(0.30));
+  static SemanticColor divider = SemanticColor(lightColor: gray150, darkColor: gray850);
 
-  SemanticColor text = SemanticColor(lightColor: black, darkColor: white);
-  SemanticColor primaryText = SemanticColor(lightColor: gray900, darkColor: white);
-  SemanticColor secondaryText = SemanticColor(lightColor: gray600, darkColor: gray500);
-  SemanticColor tertiaryText = SemanticColor(lightColor: gray350, darkColor: gray750);
-
-  SemanticColor divider = SemanticColor(lightColor: gray150, darkColor: gray850);
-
-  SemanticColor positive = SemanticColor(lightColor: green400, darkColor: green400);
-  SemanticColor negative = SemanticColor(lightColor: red400, darkColor: red400);
-  SemanticColor link = SemanticColor(lightColor: blue600, darkColor: blue600);
+  static SemanticColor positive = SemanticColor(lightColor: green400, darkColor: green400);
+  static SemanticColor negative = SemanticColor(lightColor: red400, darkColor: red400);
+  static SemanticColor link = SemanticColor(lightColor: blue600, darkColor: blue600);
 }
 
 class SemanticColor {
@@ -97,9 +95,9 @@ extension ColorX on Color {
 
   Color get pressed {
     if (this == white) {
-      return gray200.withOpacity(0.50);
+      return gray200.withOpacity(0.30);
     } else {
-      return withOpacity(0.50);
+      return withOpacity(0.30);
     }
   }
 

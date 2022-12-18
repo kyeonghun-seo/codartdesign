@@ -11,9 +11,11 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: context.isDarkMode? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      value: context.isDarkMode
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark.copyWith(statusBarColor: transparent),
       child: DecoratedBox(
-        decoration: BoxDecoration(color: CodartColor().background.getColor(context)),
+        decoration: BoxDecoration(color: CodartColor.background.getColor(context)),
         child: child,
       ),
     );
