@@ -4,7 +4,7 @@ class RingPainter extends CustomPainter {
   RingPainter({
     this.color,
     this.strokeWidth,
-});
+  });
 
   final Color? color;
   final double? strokeWidth;
@@ -17,7 +17,11 @@ class RingPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     canvas.drawOval(
-      Rect.fromLTWH(0, 0, size.width, size.height),
+      Rect.fromCenter(
+        center: size.center(Offset.zero),
+        width: size.width - paint.strokeWidth,
+        height: size.height - paint.strokeWidth,
+      ),
       paint,
     );
   }

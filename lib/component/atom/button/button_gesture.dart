@@ -1,6 +1,6 @@
 part of '../../../codartdesign.dart';
 
-mixin ButtonGesture<T extends Button> on State<T> {
+mixin ButtonGestureState<T extends Button> on State<T> {
   bool isPressed = false;
   bool isHover = false;
 
@@ -20,7 +20,7 @@ mixin ButtonGesture<T extends Button> on State<T> {
     }
   }
 
-  void onTapDown(detail) {
+  void onPointerDown(detail) {
     if (!isPressed) {
       setState(() {
         isPressed = true;
@@ -28,7 +28,7 @@ mixin ButtonGesture<T extends Button> on State<T> {
     }
   }
 
-  void onTapUp(detail) {
+  void onPointerUp(detail) {
     if (isPressed) {
       setState(() {
         isPressed = false;
@@ -36,7 +36,7 @@ mixin ButtonGesture<T extends Button> on State<T> {
     }
   }
 
-  void onTapCancel(detail) {
+  void onPointerCancel(detail) {
     if (isPressed) {
       setState(() {
         isPressed = false;
@@ -45,18 +45,55 @@ mixin ButtonGesture<T extends Button> on State<T> {
   }
 
   Widget buildGesture({required Widget child}) {
+    return ButtonGesture(
+      onMouseEnter: onMouseEnter,
+      onMouseExit: onMouseExit,
+      onPointerDown: onPointerDown,
+      onPointerUp: onPointerUp,
+      onPointerCancel: onMouseEnter,
+      onTap: widget.onTap,
+      onLongPress: widget.onLongPress,
+      child: child,
+    );
+  }
+}
+
+class ButtonGesture extends StatelessWidget {
+  const ButtonGesture({
+    required this.onMouseEnter,
+    required this.onMouseExit,
+    required this.onPointerDown,
+    required this.onPointerUp,
+    required this.onPointerCancel,
+    required this.onTap,
+    required this.onLongPress,
+    required this.child,
+    Key? key,
+  }) : super(key: key);
+
+  final PointerEnterEventListener? onMouseEnter;
+  final PointerExitEventListener? onMouseExit;
+  final PointerDownEventListener? onPointerDown;
+  final PointerUpEventListener? onPointerUp;
+  final PointerCancelEventListener? onPointerCancel;
+  final GestureTapCallback? onTap;
+  final GestureLongPressCallback? onLongPress;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: onMouseEnter,
       onExit: onMouseExit,
       child: Listener(
-        onPointerDown: onTapDown,
-        onPointerUp: onTapUp,
-        onPointerCancel: onTapCancel,
+        onPointerDown: onPointerDown,
+        onPointerUp: onPointerUp,
+        onPointerCancel: onPointerCancel,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: widget.onTap,
-          onLongPress: widget.onLongPress,
-          child: child
+          onTap: onTap,
+          onLongPress: onLongPress,
+          child: child,
         ),
       ),
     );

@@ -2,16 +2,18 @@ part of '../../../codartdesign.dart';
 
 enum ProfileSize { xxs, xs, s, m, l, xl, xxl }
 
-abstract class Profile extends StatelessWidget {
-  const Profile({
+abstract class ProfileAvatar extends StatelessWidget {
+  const ProfileAvatar({
     this.text,
     this.image,
     this.backgroundColor,
     this.profileSize = ProfileSize.m,
     this.ringColor,
     this.ringWidth,
-    this.badge,
+    this.showBadge,
+    this.badgeColor,
     this.icon,
+    this.onTap,
     super.key,
   });
 
@@ -21,8 +23,10 @@ abstract class Profile extends StatelessWidget {
   final ProfileSize profileSize;
   final Color? ringColor;
   final double? ringWidth;
-  final Widget? badge;
+  final bool? showBadge;
+  final Color? badgeColor;
   final Widget? icon;
+  final Function? onTap;
 
   double get size {
     switch (profileSize) {
@@ -47,9 +51,9 @@ abstract class Profile extends StatelessWidget {
     switch (profileSize) {
       case ProfileSize.xxs:
       case ProfileSize.xs:
+        return borderR;
       case ProfileSize.s:
       case ProfileSize.m:
-        return borderR;
       case ProfileSize.l:
       case ProfileSize.xl:
       case ProfileSize.xxl:

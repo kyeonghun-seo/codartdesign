@@ -45,9 +45,12 @@ class CodartColor {
   static SemanticColor secondaryBackground = SemanticColor(lightColor: gray100, darkColor: gray870);
   static SemanticColor tertiaryBackground = SemanticColor(lightColor: gray200, darkColor: gray800);
 
-  static SemanticColor primaryDimmed = SemanticColor(lightColor: black.withOpacity(0.85), darkColor: black.withOpacity(0.85));
-  static SemanticColor secondaryDimmed = SemanticColor(lightColor: black.withOpacity(0.70), darkColor: black.withOpacity(0.70));
-  static SemanticColor tertiaryDimmed = SemanticColor(lightColor: black.withOpacity(0.30), darkColor: black.withOpacity(0.30));
+  static SemanticColor primaryDimmed =
+      SemanticColor(lightColor: black.withOpacity(0.85), darkColor: black.withOpacity(0.85));
+  static SemanticColor secondaryDimmed =
+      SemanticColor(lightColor: black.withOpacity(0.70), darkColor: black.withOpacity(0.70));
+  static SemanticColor tertiaryDimmed =
+      SemanticColor(lightColor: black.withOpacity(0.30), darkColor: black.withOpacity(0.30));
 
   static SemanticColor text = SemanticColor(lightColor: black, darkColor: white);
   static SemanticColor primaryText = SemanticColor(lightColor: gray900, darkColor: white);
@@ -55,6 +58,7 @@ class CodartColor {
   static SemanticColor tertiaryText = SemanticColor(lightColor: gray350, darkColor: gray750);
 
   static SemanticColor divider = SemanticColor(lightColor: gray150, darkColor: gray850);
+  static SemanticColor disable = SemanticColor(lightColor: gray300, darkColor: gray770);
 
   static SemanticColor positive = SemanticColor(lightColor: green400, darkColor: green400);
   static SemanticColor negative = SemanticColor(lightColor: red400, darkColor: red400);
@@ -108,4 +112,8 @@ extension ColorX on Color {
       return withOpacity(0.40);
     }
   }
+}
+
+extension ContextX on BuildContext {
+  Color get mainColor => CodartColor.main.getColor(this);
 }
