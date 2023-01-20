@@ -80,7 +80,7 @@ class _SolidButtonState extends BoxButtonState<SolidButton> {
         curve: easeOutCubic,
         decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: CodartRadius.button,
+          borderRadius: radius,
         ),
         padding: padding,
         child: Row(

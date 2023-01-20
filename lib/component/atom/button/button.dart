@@ -82,4 +82,19 @@ abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonG
         return const EdgeInsets.symmetric(horizontal: grid * 20, vertical: grid * 5);
     }
   }
+
+  BorderRadius get radius {
+    switch (widget.buttonSize) {
+      case BoxButtonSize.xs:
+        return CodartRadius.allSmall;
+      case BoxButtonSize.s:
+        return CodartRadius.allSmall;
+      case BoxButtonSize.m:
+        return CodartRadius.allNormal;
+      case BoxButtonSize.l:
+        return CodartRadius.allLarge;
+      case BoxButtonSize.xl:
+        return CodartRadius.allLarge;
+    }
+  }
 }
