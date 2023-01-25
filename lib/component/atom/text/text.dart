@@ -1,7 +1,7 @@
 part of '../../../codartdesign.dart';
 
-abstract class Typography extends StatelessWidget {
-  const Typography(
+abstract class BaseText extends StatelessWidget {
+  const BaseText(
     this.text, {
     this.color,
     this.weight,
@@ -14,7 +14,7 @@ abstract class Typography extends StatelessWidget {
   final FontWeight? weight;
   final TextDecoration? decoration;
 
-  Widget _buildText(BuildContext context, TextStyle style) {
+  Widget _build(BuildContext context, TextStyle style) {
     return Transform(
       transform: Matrix4.identity()..translate(0.0, -1.0),
       child: Text(
@@ -29,7 +29,112 @@ abstract class Typography extends StatelessWidget {
   }
 }
 
-class TextM extends Typography {
+class TitleXXL extends BaseText {
+  const TitleXXL(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleXXL);
+  }
+}
+
+class TitleXL extends BaseText {
+  const TitleXL(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleXL);
+  }
+}
+
+class TitleL extends BaseText {
+  const TitleL(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleL);
+  }
+}
+
+class TitleM extends BaseText {
+  const TitleM(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleM);
+  }
+}
+
+class TitleS extends BaseText {
+  const TitleS(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleS);
+  }
+}
+
+class TitleXS extends BaseText {
+  const TitleXS(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, titleXS);
+  }
+}
+
+class TextL extends BaseText {
+  const TextL(
+    super.text, {
+    super.color,
+    super.weight,
+    super.decoration,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context, textL);
+  }
+}
+
+class TextM extends BaseText {
   const TextM(
     super.text, {
     super.color,
@@ -40,11 +145,11 @@ class TextM extends Typography {
 
   @override
   Widget build(BuildContext context) {
-    return _buildText(context, textM);
+    return _build(context, textM);
   }
 }
 
-class TextS extends Typography {
+class TextS extends BaseText {
   const TextS(
     super.text, {
     super.color,
@@ -55,11 +160,11 @@ class TextS extends Typography {
 
   @override
   Widget build(BuildContext context) {
-    return _buildText(context, textS);
+    return _build(context, textS);
   }
 }
 
-class TextXS extends Typography {
+class TextXS extends BaseText {
   const TextXS(
     super.text, {
     super.color,
@@ -70,11 +175,11 @@ class TextXS extends Typography {
 
   @override
   Widget build(BuildContext context) {
-    return _buildText(context, textXS);
+    return _build(context, textXS);
   }
 }
 
-class StyledText extends Typography {
+class StyledText extends BaseText {
   const StyledText(
     super.text,
     this.style, {
@@ -88,6 +193,6 @@ class StyledText extends Typography {
 
   @override
   Widget build(BuildContext context) {
-    return _buildText(context, style);
+    return _build(context, style);
   }
 }
