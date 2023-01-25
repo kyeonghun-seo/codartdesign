@@ -116,4 +116,6 @@ extension ColorX on Color {
 
 extension ContextX on BuildContext {
   Color get mainColor => CodartColor.main.getColor(this);
+  Color get backgroundColor => CodartColor.background.getColor(this);
+  Color get textColor => CodartColor.text.getColor(this);
 }

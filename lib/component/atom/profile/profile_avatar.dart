@@ -10,12 +10,14 @@ abstract class ProfileAvatar extends StatelessWidget {
     this.profileSize = ProfileSize.m,
     this.ringColor,
     this.ringWidth,
-    this.showBadge,
+    this.showDotBadge,
+    this.numberBadgeCount,
+    this.iconBadgePath,
     this.badgeColor,
     this.icon,
     this.onTap,
     super.key,
-  });
+  }) : assert(numberBadgeCount == null || iconBadgePath == null);
 
   final String? text;
   final ImageProvider? image;
@@ -23,7 +25,9 @@ abstract class ProfileAvatar extends StatelessWidget {
   final ProfileSize profileSize;
   final Color? ringColor;
   final double? ringWidth;
-  final bool? showBadge;
+  final bool? showDotBadge;
+  final int? numberBadgeCount;
+  final String? iconBadgePath;
   final Color? badgeColor;
   final Widget? icon;
   final Function? onTap;
@@ -58,6 +62,23 @@ abstract class ProfileAvatar extends StatelessWidget {
       case ProfileSize.xl:
       case ProfileSize.xxl:
         return borderM;
+    }
+  }
+
+  BadgeSize get badgeSize {
+    switch (profileSize) {
+      case ProfileSize.xxs:
+      case ProfileSize.xs:
+        return BadgeSize.s;
+      case ProfileSize.s:
+      case ProfileSize.m:
+        return BadgeSize.m;
+      case ProfileSize.l:
+        return BadgeSize.l;
+      case ProfileSize.xl:
+        return BadgeSize.xl;
+      case ProfileSize.xxl:
+        return BadgeSize.xxl;
     }
   }
 }

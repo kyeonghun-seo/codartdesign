@@ -88,9 +88,10 @@ class _SolidButtonState extends BoxButtonState<SolidButton> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          StyledText(
             widget.text ?? '',
-            style: widget.textStyle?.copyWith(color: textColor) ?? textStyle.copyWith(color: textColor),
+            widget.textStyle ?? textStyle,
+            color: textColor,
           ),
         ],
       ),
