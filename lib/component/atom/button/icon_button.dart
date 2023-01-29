@@ -51,7 +51,7 @@ class _IconImageButtonState extends ButtonState<IconImageButton> {
   Widget build(BuildContext context) {
     final color = buttonColor;
 
-    return buildGesture(
+    return buildButtonGesture(
       child: AnimatedContainer(
         duration: normalDuration,
         curve: easeOutCubic,

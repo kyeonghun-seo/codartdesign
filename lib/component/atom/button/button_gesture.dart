@@ -44,7 +44,7 @@ mixin ButtonGestureState<T extends Button> on State<T> {
     }
   }
 
-  Widget buildGesture({required Widget child}) {
+  Widget buildButtonGesture({required Widget child}) {
     return ButtonGesture(
       onMouseEnter: onMouseEnter,
       onMouseExit: onMouseExit,

@@ -2,6 +2,7 @@ part of '../../../codartdesign.dart';
 
 enum BoxButtonSize { xs, s, m, l, xl }
 
+/// 버튼의 추상화
 abstract class Button extends StatefulWidget {
   const Button({
     this.onTap,
@@ -15,10 +16,14 @@ abstract class Button extends StatefulWidget {
   final bool loading;
   final GestureTapCallback? onTap;
   final GestureLongPressCallback? onLongPress;
+
+  bool get isEnable => enable && (onTap != null || onLongPress != null);
 }
 
+/// 버튼의 상태
 abstract class ButtonState<T extends Button> extends State<T> with ButtonGestureState {}
 
+/// 아이콘, 텍스트, 사이즈를 가지는 버튼의 추상화
 abstract class BoxButton extends Button {
   const BoxButton({
     super.onTap,
@@ -27,9 +32,9 @@ abstract class BoxButton extends Button {
     this.textStyle,
     this.textColor,
     this.color,
+    this.buttonSize = BoxButtonSize.m,
     super.enable = true,
     super.loading = false,
-    this.buttonSize = BoxButtonSize.m,
     super.onLongPress,
     super.key,
   });
@@ -42,6 +47,7 @@ abstract class BoxButton extends Button {
   final BoxButtonSize buttonSize;
 }
 
+/// 박스버튼의 상태
 abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonGestureState {
   Color get buttonColor {
     final color = widget.color ?? CodartColor.main.getColor(context);

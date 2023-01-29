@@ -2,7 +2,7 @@ part of '../../../codartdesign.dart';
 
 enum ProfileSize { xxs, xs, s, m, l, xl, xxl }
 
-abstract class ProfileAvatar extends StatelessWidget {
+abstract class ProfileAvatar extends Button {
   const ProfileAvatar({
     this.text,
     this.image,
@@ -15,7 +15,10 @@ abstract class ProfileAvatar extends StatelessWidget {
     this.iconBadgePath,
     this.badgeColor,
     this.icon,
-    this.onTap,
+    super.enable,
+    super.loading,
+    super.onLongPress,
+    super.onTap,
     super.key,
   }) : assert(numberBadgeCount == null || iconBadgePath == null);
 
@@ -30,7 +33,6 @@ abstract class ProfileAvatar extends StatelessWidget {
   final String? iconBadgePath;
   final Color? badgeColor;
   final Widget? icon;
-  final Function? onTap;
 
   double get size {
     switch (profileSize) {

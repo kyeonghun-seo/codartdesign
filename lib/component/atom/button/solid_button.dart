@@ -74,7 +74,7 @@ class SolidButton extends BoxButton {
 class _SolidButtonState extends BoxButtonState<SolidButton> {
   @override
   Widget build(BuildContext context) {
-    final isEnable = widget.enable && (widget.onTap != null || widget.onLongPress != null);
+    final isEnable = widget.isEnable;
     final textColor = isEnable ? (widget.textColor ?? white) : CodartColor.secondaryText.getColor(context);
     final solid = AnimatedContainer(
       duration: normalDuration,
@@ -98,7 +98,7 @@ class _SolidButtonState extends BoxButtonState<SolidButton> {
     );
 
     if (isEnable) {
-      return buildGesture(child: solid);
+      return buildButtonGesture(child: solid);
     } else {
       return solid;
     }

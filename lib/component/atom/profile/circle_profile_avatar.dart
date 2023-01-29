@@ -13,6 +13,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   });
@@ -28,6 +31,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.xxl);
@@ -43,6 +49,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.xl);
@@ -58,6 +67,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.l);
@@ -73,6 +85,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.s);
@@ -88,6 +103,9 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.xs);
@@ -103,70 +121,81 @@ class CircleProfileAvatar extends ProfileAvatar {
     super.iconBadgePath,
     super.badgeColor,
     super.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
     super.onTap,
     super.key,
   }) : super(profileSize: ProfileSize.xxs);
 
   @override
+  State<CircleProfileAvatar> createState() => _CircleProfileAvatarState();
+}
+
+class _CircleProfileAvatarState extends ButtonState<CircleProfileAvatar> {
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap != null ? () => onTap?.call() : null,
-      child: SizedBox.square(
-        dimension: size,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: backgroundColor ?? CodartColor.tertiaryBackground.getColor(context),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              ClipOval(
-                child: image != null
-                    ? Image(
-                        image: image!,
-                        width: size,
-                        height: size,
-                        fit: BoxFit.cover,
-                      )
-                    : SvgPicture.asset(
-                        'assets/images/ic_profile.svg',
-                        width: size,
-                        height: size,
-                        color: CodartColor.secondaryText.getColor(context),
-                      ),
+    final child = SizedBox.square(
+      dimension: widget.size,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: widget.backgroundColor ?? CodartColor.tertiaryBackground.getColor(context),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            ClipOval(
+              child: widget.image != null
+                  ? Image(
+                      image: widget.image!,
+                      width: widget.size,
+                      height: widget.size,
+                      fit: BoxFit.cover,
+                    )
+                  : SvgPicture.asset(
+                      'assets/images/ic_profile.svg',
+                      width: widget.size,
+                      height: widget.size,
+                      color: CodartColor.secondaryText.getColor(context),
+                    ),
+            ),
+            if (widget.ringColor != null)
+              CustomPaint(
+                size: Size.square(widget.size),
+                painter: RingPainter(
+                  color: widget.ringColor!,
+                  strokeWidth: widget.ringWidth ?? widget.strokeWidth,
+                ),
               ),
-              if (ringColor != null)
-                CustomPaint(
-                  size: Size.square(size),
-                  painter: RingPainter(
-                    color: ringColor!,
-                    strokeWidth: ringWidth ?? strokeWidth,
-                  ),
+            if (widget.showDotBadge ?? false)
+              Positioned(
+                right: widget.size / 6.5 - CodartSize.getDotBadgeSize(widget.badgeSize) / 2,
+                top: widget.size / 6.5 - CodartSize.getDotBadgeSize(widget.badgeSize) / 2,
+                child: DotBadge(
+                  color: widget.badgeColor,
+                  badgeSize: widget.badgeSize,
                 ),
-              if (showDotBadge ?? false)
-                Positioned(
-                  right: size / 6.5 - CodartSize.getDotBadgeSize(badgeSize) / 2,
-                  top: size / 6.5 - CodartSize.getDotBadgeSize(badgeSize) / 2,
-                  child: DotBadge(
-                    color: badgeColor,
-                    badgeSize: badgeSize,
-                  ),
+              ),
+            if ((widget.numberBadgeCount ?? 0) > 0)
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: NumberBadge(
+                  color: widget.badgeColor,
+                  badgeSize: widget.badgeSize,
+                  number: widget.numberBadgeCount,
                 ),
-              if ((numberBadgeCount ?? 0) > 0)
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: NumberBadge(
-                    color: badgeColor,
-                    badgeSize: badgeSize,
-                    number: numberBadgeCount,
-                  ),
-                ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );
+
+    if (widget.isEnable) {
+      return buildButtonGesture(child: child);
+    } else {
+      return child;
+    }
   }
 }
