@@ -19,15 +19,16 @@ class CodartLayout {
 }
 
 class CodartRadius {
-
-  static Radius base = const Radius.circular(radiusM);
-
-  static BorderRadius button = const BorderRadius.only(
-    topLeft: Radius.circular(radiusM),
-    topRight: Radius.circular(radiusM),
-    bottomLeft: Radius.circular(radiusM),
-    bottomRight: Radius.circular(radiusM),
-  );
+  static Radius xSmall = const Radius.circular(radiusXs);
+  static Radius small = const Radius.circular(radiusS);
+  static Radius normal = const Radius.circular(radiusM);
+  static Radius large = const Radius.circular(radiusL);
+  static Radius xLarge = const Radius.circular(radiusXl);
+  static BorderRadius allXSmall = BorderRadius.all(xSmall);
+  static BorderRadius allSmall = BorderRadius.all(small);
+  static BorderRadius allNormal = BorderRadius.all(normal);
+  static BorderRadius allLarge = BorderRadius.all(large);
+  static BorderRadius allXLarge = BorderRadius.all(xLarge);
 }
 
 class CodartBorderWidth {
@@ -38,18 +39,16 @@ class CodartBorderWidth {
   factory CodartBorderWidth() => _instance;
 }
 
-class CodartSize {
-  static const double bottomNavigationTab = grid * 24;
+mixin AfterLayoutMixin<T extends StatefulWidget> on State<T> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.endOfFrame.then(
+      (_) {
+        if (mounted) afterFirstLayout(context);
+      },
+    );
+  }
 
-  static const double xxSmallProfile = grid * 14;
-  static const double xSmallProfile = grid * 16;
-  static const double smallProfile = grid * 21;
-  static const double avatar = grid * 25;
-  static const double largeProfile = grid * 23;
-  static const double xLargeProfile = grid * 30;
-  static const double xxLargeProfile = grid * 44;
-
-  static const double smallIcon = grid * 10;
-  static const double icon = grid * 14;
-  static const double largeIcon = grid * 19;
+  FutureOr<void> afterFirstLayout(BuildContext context);
 }

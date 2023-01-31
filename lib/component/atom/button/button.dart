@@ -2,9 +2,10 @@ part of '../../../codartdesign.dart';
 
 enum BoxButtonSize { xs, s, m, l, xl }
 
+/// 버튼의 추상화
 abstract class Button extends StatefulWidget {
   const Button({
-    required this.onTap,
+    this.onTap,
     this.enable = true,
     this.loading = false,
     this.onLongPress,
@@ -15,21 +16,25 @@ abstract class Button extends StatefulWidget {
   final bool loading;
   final GestureTapCallback? onTap;
   final GestureLongPressCallback? onLongPress;
+
+  bool get isEnable => enable && (onTap != null || onLongPress != null);
 }
 
-abstract class ButtonState<T extends Button> extends State<T> with ButtonGesture {}
+/// 버튼의 상태
+abstract class ButtonState<T extends Button> extends State<T> with ButtonGestureState {}
 
+/// 아이콘, 텍스트, 사이즈를 가지는 버튼의 추상화
 abstract class BoxButton extends Button {
   const BoxButton({
-    required super.onTap,
+    super.onTap,
     this.icon,
     this.text,
     this.textStyle,
     this.textColor,
     this.color,
+    this.buttonSize = BoxButtonSize.m,
     super.enable = true,
     super.loading = false,
-    this.buttonSize = BoxButtonSize.m,
     super.onLongPress,
     super.key,
   });
@@ -42,7 +47,8 @@ abstract class BoxButton extends Button {
   final BoxButtonSize buttonSize;
 }
 
-abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonGesture {
+/// 박스버튼의 상태
+abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonGestureState {
   Color get buttonColor {
     final color = widget.color ?? CodartColor.main.getColor(context);
     if (isPressed) {
@@ -53,6 +59,8 @@ abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonG
       return color;
     }
   }
+
+  Color get disableColor => CodartColor.disable.getColor(context);
 
   TextStyle get textStyle {
     switch (widget.buttonSize) {
@@ -80,6 +88,21 @@ abstract class BoxButtonState<T extends BoxButton> extends State<T> with ButtonG
         return const EdgeInsets.symmetric(horizontal: grid * 14, vertical: grid * 4);
       case BoxButtonSize.xl:
         return const EdgeInsets.symmetric(horizontal: grid * 20, vertical: grid * 5);
+    }
+  }
+
+  BorderRadius get radius {
+    switch (widget.buttonSize) {
+      case BoxButtonSize.xs:
+        return CodartRadius.allSmall;
+      case BoxButtonSize.s:
+        return CodartRadius.allNormal;
+      case BoxButtonSize.m:
+        return CodartRadius.allNormal;
+      case BoxButtonSize.l:
+        return CodartRadius.allLarge;
+      case BoxButtonSize.xl:
+        return CodartRadius.allLarge;
     }
   }
 }

@@ -1,6 +1,7 @@
 part of '../codartdesign.dart';
 
 extension BuildContextX on BuildContext {
+  CodartDesignState get codartDesign => CodartDesign.of(this);
 
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
@@ -9,5 +10,4 @@ extension BuildContextX on BuildContext {
   Size get size => mediaQuery.size;
   double get topPadding => mediaQuery.padding.top;
   double get bottomPadding => mediaQuery.padding.bottom;
-
 }

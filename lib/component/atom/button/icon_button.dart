@@ -51,11 +51,11 @@ class _IconImageButtonState extends ButtonState<IconImageButton> {
   Widget build(BuildContext context) {
     final color = buttonColor;
 
-    return buildGesture(
+    return buildButtonGesture(
       child: AnimatedContainer(
-        padding: CodartLayout.iconButtonPadding,
         duration: normalDuration,
         curve: easeOutCubic,
+        padding: CodartLayout.iconButtonPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,10 +65,11 @@ class _IconImageButtonState extends ButtonState<IconImageButton> {
               color: color,
               iconSize: widget.iconSize,
             ),
-            if(widget.text != null) Text(
-              widget.text ?? '',
-              style: textXS.copyWith(color: color),
-            ),
+            if (widget.text != null)
+              Text(
+                widget.text ?? '',
+                style: textXS.copyWith(color: color),
+              ),
           ],
         ),
       ),

@@ -2,7 +2,7 @@ part of '../../../codartdesign.dart';
 
 class SolidButton extends BoxButton {
   const SolidButton({
-    required super.onTap,
+    super.onTap,
     super.icon,
     super.text,
     super.textStyle,
@@ -16,7 +16,7 @@ class SolidButton extends BoxButton {
   });
 
   const SolidButton.xSmall({
-    required super.onTap,
+    super.onTap,
     super.icon,
     super.text,
     super.textStyle,
@@ -29,7 +29,7 @@ class SolidButton extends BoxButton {
   }) : super(buttonSize: BoxButtonSize.xs);
 
   const SolidButton.small({
-    required super.onTap,
+    super.onTap,
     super.icon,
     super.text,
     super.textStyle,
@@ -42,7 +42,7 @@ class SolidButton extends BoxButton {
   }) : super(buttonSize: BoxButtonSize.s);
 
   const SolidButton.large({
-    required super.onTap,
+    super.onTap,
     super.icon,
     super.text,
     super.textStyle,
@@ -55,7 +55,7 @@ class SolidButton extends BoxButton {
   }) : super(buttonSize: BoxButtonSize.l);
 
   const SolidButton.xLarge({
-    required super.onTap,
+    super.onTap,
     super.icon,
     super.text,
     super.textStyle,
@@ -74,28 +74,33 @@ class SolidButton extends BoxButton {
 class _SolidButtonState extends BoxButtonState<SolidButton> {
   @override
   Widget build(BuildContext context) {
-    return buildGesture(
-      child: AnimatedContainer(
-        duration: normalDuration,
-        curve: easeOutCubic,
-        decoration: BoxDecoration(
-          color: buttonColor,
-          borderRadius: CodartRadius.button,
-        ),
-        padding: padding,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.text ?? '',
-              style: widget.textStyle?.copyWith(color: textColor) ?? textStyle.copyWith(color: textColor),
-            ),
-          ],
-        ),
+    final isEnable = widget.isEnable;
+    final textColor = isEnable ? (widget.textColor ?? white) : CodartColor.secondaryText.getColor(context);
+    final solid = AnimatedContainer(
+      duration: normalDuration,
+      curve: easeOutCubic,
+      decoration: BoxDecoration(
+        color: isEnable ? buttonColor : disableColor,
+        borderRadius: radius,
+      ),
+      padding: padding,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          StyledText(
+            widget.text ?? '',
+            widget.textStyle ?? textStyle,
+            color: textColor,
+          ),
+        ],
       ),
     );
-  }
 
-  Color get textColor => widget.textColor ?? white;
+    if (isEnable) {
+      return buildButtonGesture(child: solid);
+    } else {
+      return solid;
+    }
+  }
 }

@@ -2,18 +2,25 @@ part of '../../../codartdesign.dart';
 
 enum ProfileSize { xxs, xs, s, m, l, xl, xxl }
 
-abstract class Profile extends StatelessWidget {
-  const Profile({
+abstract class ProfileAvatar extends Button {
+  const ProfileAvatar({
     this.text,
     this.image,
     this.backgroundColor,
     this.profileSize = ProfileSize.m,
     this.ringColor,
     this.ringWidth,
-    this.badge,
+    this.showDotBadge,
+    this.numberBadgeCount,
+    this.iconBadgePath,
+    this.badgeColor,
     this.icon,
+    super.enable,
+    super.loading,
+    super.onLongPress,
+    super.onTap,
     super.key,
-  });
+  }) : assert(numberBadgeCount == null || iconBadgePath == null);
 
   final String? text;
   final ImageProvider? image;
@@ -21,7 +28,10 @@ abstract class Profile extends StatelessWidget {
   final ProfileSize profileSize;
   final Color? ringColor;
   final double? ringWidth;
-  final Widget? badge;
+  final bool? showDotBadge;
+  final int? numberBadgeCount;
+  final String? iconBadgePath;
+  final Color? badgeColor;
   final Widget? icon;
 
   double get size {
@@ -47,13 +57,30 @@ abstract class Profile extends StatelessWidget {
     switch (profileSize) {
       case ProfileSize.xxs:
       case ProfileSize.xs:
+        return borderR;
       case ProfileSize.s:
       case ProfileSize.m:
-        return borderR;
       case ProfileSize.l:
       case ProfileSize.xl:
       case ProfileSize.xxl:
         return borderM;
+    }
+  }
+
+  BadgeSize get badgeSize {
+    switch (profileSize) {
+      case ProfileSize.xxs:
+      case ProfileSize.xs:
+        return BadgeSize.s;
+      case ProfileSize.s:
+      case ProfileSize.m:
+        return BadgeSize.m;
+      case ProfileSize.l:
+        return BadgeSize.l;
+      case ProfileSize.xl:
+        return BadgeSize.xl;
+      case ProfileSize.xxl:
+        return BadgeSize.xxl;
     }
   }
 }

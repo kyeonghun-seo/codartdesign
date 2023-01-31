@@ -13,6 +13,8 @@ dependencies:
 
   google_fonts:
   flutter_svg:
+  gap:
+  flutter_animate:
 
 dev_dependencies:
   flutter_test:
