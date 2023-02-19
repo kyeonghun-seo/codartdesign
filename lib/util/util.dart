@@ -7,7 +7,7 @@ extension BuildContextX on BuildContext {
 
   bool get isDarkMode => mediaQuery.platformBrightness == Brightness.dark;
 
-  Size get size => mediaQuery.size;
+  Size get screenSize => mediaQuery.size;
   double get topPadding => mediaQuery.padding.top;
   double get bottomPadding => mediaQuery.padding.bottom;
 }
